@@ -1,50 +1,51 @@
-document.getElementById('toggleTheme').onclick = () => {
-  document.body.classList.toggle('light');
+const galleries = {
+  portraits: [
+    "images/portraits/flame-focus.jpg",
+    "images/portraits/freckled-thoughts.jpg",
+    "images/portraits/hiding-frame.jpg",
+    "images/portraits/neon-haze.jpg",
+    "images/portraits/pierced-reflection.jpg",
+    "images/portraits/shadow-gaze.jpg",
+    "images/portraits/smoke-ring.jpg",
+    "images/portraits/watchful-eye.jpg"
+  ],
+  susa: [
+    "images/susa/cat-whisper.jpg",
+    "images/susa/dog-window.jpg",
+    "images/susa/house-in-hills.jpg",
+    "images/susa/lamppost-and-peak.jpg",
+    "images/susa/motorcycle-alley.jpg",
+    "images/susa/spire-framed.jpg",
+    "images/susa/wildgrass-close.jpg"
+  ]
 };
 
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImage');
-const lightboxCaption = document.getElementById('lightboxCaption');
-const closeBtn = document.getElementById('closeBtn');
+function openGallery(category) {
+  const images = galleries[category];
+  const viewer = document.createElement("div");
+  viewer.className = "viewer";
 
-closeBtn.onclick = () => lightbox.classList.add('hidden');
+  images.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = category;
+    viewer.appendChild(img);
+  });
 
-function openGallery(folder) {
-  const images = {
-    portraits: [
-      "flame-focus.jpg",
-      "neon-haze.jpg",
-      "freckled-thoughts.jpg",
-      "smoke-ring.jpg",
-      "pierced-reflection.jpg",
-      "watchful-eye.jpg",
-      "hiding-frame.jpg",
-      "shadow-gaze.jpg"
-    ],
-    susa: [
-      "cat-whisper.jpg",
-      "dog-window.jpg",
-      "house-in-hills.jpg",
-      "lamppost-and-peak.jpg",
-      "motorcycle-alley.jpg",
-      "spire-framed.jpg",
-      "wildgrass-close.jpg"
-    ]
-  };
+  const closeBtn = document.createElement("span");
+  closeBtn.className = "close";
+  closeBtn.innerText = "×";
+  closeBtn.onclick = () => viewer.remove();
 
-  let index = 0;
-  const paths = images[folder].map(name => `images/${folder}/${name}`);
-
-  function showImage(i) {
-    lightboxImg.src = paths[i];
-    lightboxCaption.innerText = `${folder.charAt(0).toUpperCase() + folder.slice(1)} – Image ${i + 1} of ${paths.length}`;
-    lightbox.classList.remove("hidden");
-  }
-
-  showImage(index);
-
-  lightbox.onclick = () => {
-    index = (index + 1) % paths.length;
-    showImage(index);
-  };
+  viewer.appendChild(closeBtn);
+  document.body.appendChild(viewer);
 }
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
+document.querySelectorAll(".category").forEach(card => {
+  card.onclick = () => openGallery(card.dataset.category);
+});
+
