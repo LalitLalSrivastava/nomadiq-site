@@ -2,32 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nomadiq – Photo & Travel Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOMADIQ</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
+  <div class="hero">
     <h1>NOMADIQ</h1>
     <p>A visual diary of people, places, and moments</p>
-    <button id="toggleTheme">Toggle Theme</button>
-  </header>
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </div>
 
-  <main class="gallery">
-    <div class="card" onclick="openGallery('portraits')">
-      <img src="images/portraits/shadow-gaze.jpg" alt="Portraits"/>
+  <div class="gallery">
+    <div class="gallery-item" onclick="openGallery('portraits')">
+      <img src="images/portraits/flame-focus.jpg" alt="Portraits" />
       <h2>Portraits</h2>
     </div>
-    <div class="card" onclick="openGallery('susa')">
-      <img src="images/susa/spire-framed.jpg" alt="Susa"/>
+    <div class="gallery-item" onclick="openGallery('susa')">
+      <img src="images/susa/spire-framed.jpg" alt="Susa" />
       <h2>Susa</h2>
     </div>
-  </main>
+  </div>
 
-  <div id="lightbox" class="hidden">
-    <span id="closeBtn">&times;</span>
-    <img id="lightboxImage" src="" />
-    <div id="lightboxCaption"></div>
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Large view" />
   </div>
 
   <script src="main.js"></script>
