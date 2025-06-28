@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nomadiq – Photo & Travel Blog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>NOMADIQ</h1>
+    <p>A visual diary of people, places, and moments</p>
+    <button id="toggleTheme">Toggle Theme</button>
+  </header>
+
+  <main class="gallery">
+    <div class="card" onclick="openGallery('portraits')">
+      <img src="images/portraits/shadow-gaze.jpg" alt="Portraits"/>
+      <h2>Portraits</h2>
+    </div>
+    <div class="card" onclick="openGallery('susa')">
+      <img src="images/susa/spire-framed.jpg" alt="Susa"/>
+      <h2>Susa</h2>
+    </div>
+  </main>
+
+  <div id="lightbox" class="hidden">
+    <span id="closeBtn">&times;</span>
+    <img id="lightboxImage" src="" />
+    <div id="lightboxCaption"></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
